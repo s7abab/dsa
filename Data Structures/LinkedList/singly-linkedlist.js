@@ -24,34 +24,54 @@ class LinkedList {
     this.size++;
   }
 
-  prepend (value){
+  prepend(value) {
     const newNode = new Node(value);
-    if(!this.head){
-        this.head= newNode;
-        this.tail = newNode
-    }else{
-        newNode.next = this.head;
-        this.head = newNode
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      newNode.next = this.head;
+      this.head = newNode;
     }
     this.size++;
   }
 
-  remove (value){
-    let curr = this.head;
-    let prev = curr;
-    while(curr!==null){
-        if(curr.value === value){
-            curr = curr.next;
-            prev = curr;
-            this.size --;
-        }
-        prev = curr;
-        curr = curr.next
+  insert(index, value) {
+    if (index < 0 || index > this.size) return;
+    const newNode = new Node(value);
+    let prev = this.head;
+    for (let i = 0; i < index - 1; i++) {
+      prev = prev.next;
     }
+    newNode.next = prev.next;
+    prev.next = newNode;
+    this.size++;
   }
+
+  remove(index) {
+    if (index < 0 || index > this.size) {
+      return null;
+    }
+    let removedNode;
+    if (index === 0) {
+      removedNode = this.head;
+      this.head = this.head.next;
+    } else {
+      let prev = this.head;
+      for (let i = 0; i < index - 1; i++) {
+        prev = prev.next;
+      }
+      removedNode = prev.next;
+
+      prev.next = removedNode.next;
+    }
+    this.size--;
+    return removedNode.value;
+  }
+
   print() {
     let curr = this.head;
-    while (curr !== null) {
+    while (curr) {
       console.log(curr.value);
       curr = curr.next;
     }
@@ -62,5 +82,8 @@ const list = new LinkedList();
 list.append(1);
 list.append(2);
 list.append(4);
-list.remove(2);
+list.prepend(3);
+list.insert(2, 100);
+list.remove(1);
+list.remove(1);
 list.print();
