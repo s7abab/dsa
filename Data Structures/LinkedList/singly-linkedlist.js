@@ -52,21 +52,52 @@ class LinkedList {
     if (index < 0 || index > this.size) {
       return null;
     }
-    let removedNode;
-    if (index === 0) {
-      removedNode = this.head;
+    let removeNode;
+    if (index === this.head) {
+      removeNode = this.head;
       this.head = this.head.next;
     } else {
       let prev = this.head;
       for (let i = 0; i < index - 1; i++) {
         prev = prev.next;
       }
-      removedNode = prev.next;
-
-      prev.next = removedNode.next;
+      removeNode = prev.next;
+      prev.next = removeNode.next;
     }
     this.size--;
-    return removedNode.value;
+    return removeNode;
+  }
+
+  reverse() {
+    let prev = null;
+    let curr = this.head;
+
+    while (curr) {
+      let next = curr.next;
+      curr.next = prev;
+      prev = curr;
+      curr = next;
+    }
+    this.head = prev;
+    this.tail = this.head ? this.head : null;
+  }
+
+  sort() {
+    let temp;
+    let curr = this.head;
+
+    while (curr) {
+      let next = curr.next;
+      while (next) {
+        if (curr.value > next.value) {
+          temp = curr.value;
+          curr.value = next.value;
+          next.value = temp;
+        }
+        next = next.next
+      }
+      curr = curr.next;
+    }
   }
 
   print() {
@@ -80,10 +111,10 @@ class LinkedList {
 
 const list = new LinkedList();
 list.append(1);
-list.append(2);
-list.append(4);
-list.prepend(3);
-list.insert(2, 100);
-list.remove(1);
-list.remove(1);
+list.append(3);
+list.append(50);
+list.append(400);
+list.append(11);
+list.append(0);
+list.sort()
 list.print();
