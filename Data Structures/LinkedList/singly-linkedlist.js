@@ -53,7 +53,7 @@ class LinkedList {
       return null;
     }
     let removeNode;
-    if (index === this.head) {
+    if (index === 0) {
       removeNode = this.head;
       this.head = this.head.next;
     } else {
@@ -94,7 +94,7 @@ class LinkedList {
           curr.value = next.value;
           next.value = temp;
         }
-        next = next.next
+        next = next.next;
       }
       curr = curr.next;
     }
@@ -110,11 +110,11 @@ class LinkedList {
 }
 
 const list = new LinkedList();
-list.append(1);
+list.append(400);
 list.append(3);
 list.append(50);
-list.append(400);
-list.append(11);
 list.append(0);
-list.sort()
+list.append(11);
+list.remove(-1)
+
 list.print();
