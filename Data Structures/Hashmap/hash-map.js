@@ -20,9 +20,9 @@ class HashMap {
     } else {
       const sameKeyItem = bucket.find((item) => item[0] === key);
       if (sameKeyItem) {
-        this.table[sameKeyItem] = value;
+        sameKeyItem[1] = value;
       } else {
-        bucket.push([key, value]);
+        bucket.push([index, value]);
       }
     }
   }
@@ -45,7 +45,7 @@ class HashMap {
     if (bucket) {
       const sameKeyItem = bucket.find((item) => item[0] === key);
       if (sameKeyItem) {
-        bucket.splice(bucket.indexOf(sameKeyItem, 1));
+        bucket.splice(bucket.indexOf(sameKeyItem), 1);
       }
     }
   }
@@ -61,6 +61,6 @@ const map = new HashMap(5);
 map.set("name", "Jhon");
 map.set("mane", "Mary");
 map.set("age", "22");
-map.set("ge", "20");
-
+map.set("amne", "20");
+map.remove("name");
 map.print();
