@@ -107,6 +107,69 @@ class LinkedList {
       curr = curr.next;
     }
   }
+
+  mergeSort() {
+    if (this.size <= 1) {
+      return this.head;
+    }
+
+    const middle = this.getMiddleNode();
+    const leftList = new LinkedList();
+    const rightList = new LinkedList();
+
+    // Split the list into two halves
+    leftList.head = this.head;
+    leftList.tail = middle;
+    leftList.size = Math.ceil(this.size / 2);
+
+    rightList.head = middle.next;
+    rightList.tail = this.tail;
+    rightList.size = Math.floor(this.size / 2);
+
+    middle.next = null; // Break the link between the two halves
+
+    // Recursively sort the two halves
+    leftList.mergeSort();
+    rightList.mergeSort();
+
+    // Merge the sorted halves
+    this.head = this.merge(leftList.head, rightList.head);
+    this.tail = rightList.tail;
+  }
+
+  // Helper method to get the middle node of the list
+  getMiddleNode() {
+    let slow = this.head;
+    let fast = this.head;
+
+    while (fast.next && fast.next.next) {
+      slow = slow.next;
+      fast = fast.next.next;
+    }
+
+    return slow;
+  }
+
+  // Helper method to merge two sorted linked lists
+  merge(left, right) {
+    const dummy = new Node(null);
+    let current = dummy;
+
+    while (left && right) {
+      if (left.value < right.value) {
+        current.next = left;
+        left = left.next;
+      } else {
+        current.next = right;
+        right = right.next;
+      }
+      current = current.next;
+    }
+
+    current.next = left || right;
+
+    return dummy.next;
+  }
 }
 
 const list = new LinkedList();
