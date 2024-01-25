@@ -44,7 +44,6 @@ class TrieNode {
     }
   }
   
-  // Example Usage:
   
   let trie = new Trie();
   trie.insert("apple");
