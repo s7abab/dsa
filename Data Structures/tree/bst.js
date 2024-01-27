@@ -63,6 +63,33 @@ class Node {
   
       return found;
     }
+
+    delete(value) {
+      const removeNode = (node, value) => {
+        if (!node) {
+          return null;
+        }
+  
+        if (value < node.value) {
+          node.left = removeNode(node.left, value);
+        } else if (value > node.value) {
+          node.right = removeNode(node.right, value);
+        } else {
+          // Node with only one child or no child
+          if (!node.left) {
+            return node.right;
+          } else if (!node.right) {
+            return node.left;
+          }
+  
+          // Node with two children
+          node.value = this.findMinValue(node.right);
+          node.right = removeNode(node.right, node.value);
+        }
+  
+        return node;
+      };
+    }
   }
   
   // Example usage:
@@ -75,6 +102,6 @@ class Node {
   bst.insert(12);
   bst.insert(20);
   
-  console.log(bst.find(5));  // true
-  console.log(bst.find(8));  // false
+  console.log(bst.find(5)); 
+  console.log(bst.find(8)); 
   
