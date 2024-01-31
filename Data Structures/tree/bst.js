@@ -144,5 +144,5 @@ const bst = new Bst();
 bst.insert(10);
 bst.insert(5);
 bst.insert(12);
-bst.delete(12);
+bst.delete(10);
 bst.inorder(bst.root);
