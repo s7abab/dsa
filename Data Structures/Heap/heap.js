@@ -56,7 +56,7 @@ class MinHeap {
   heapifyUp() {
     let index = this.heap.length - 1;
 
-    while (this.hasParent(index && this.parent(index) > this.heap[index])) {
+    while (this.hasParent(index) && this.parent(index) > this.heap[index]) {
       this.swap(index, this.parentIndex(index));
       index = this.parentIndex(index);
     }
@@ -89,7 +89,7 @@ class MinHeap {
 
   poll() {
     if (this.heap.length === 0) {
-      console.log("Heap is empty");
+      console.error("Heap is empty");
       return;
     }
     let item = this.heap[0];

@@ -102,16 +102,13 @@ class Graph {
 }
 
 const graph = new Graph();
-graph.addVertex(1);
-graph.addVertex(2);
-graph.addVertex(3);
-graph.addVertex(4);
-graph.addVertex(5);
-graph.addEdges(1, 2);
-graph.addEdges(3, 2);
-graph.addEdges(4, 3);
-graph.addEdges(1, 4);
-graph.addEdges(1, 5);
-// graph.dfs(2);
 
-graph.bfs(1);
+graph.addVertex(1)
+graph.addVertex(2)
+graph.addVertex(3)
+graph.addVertex(4)
+graph.addEdges(1,4)
+graph.addEdges(2,3)
+graph.addEdges(2,4);
+
+console.log(graph.dfs(2))
