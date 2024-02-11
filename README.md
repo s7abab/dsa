@@ -1,0 +1,9 @@
+# Data Structures and Algorithms (DSA)
+
+- Linked Lists
+- Stacks
+- Queues
+- Trees
+- Graphs
+- Sorting algorithms (e.g., Bubble Sort, Merge Sort)
+- Searching algorithms (e.g., Binary Search)
