@@ -82,6 +82,26 @@ class LinkedList {
     this.tail = this.head ? this.head : null;
   }
 
+  reverseRec() {
+    if (!this.head) {
+        return;
+    }
+
+    const reverseUtil = (curr, prev) => {
+        if (!curr) {
+            this.head = prev;
+            return;
+        }
+
+        const next = curr.next;
+        curr.next = prev;
+        reverseUtil(next, curr);
+    };
+
+    reverseUtil(this.head, null);
+    this.tail = this.head; // Update tail
+}
+
   sort() {
     let temp;
     let curr = this.head;
@@ -179,5 +199,5 @@ list.append(50);
 list.append(0);
 list.append(11);
 list.remove(-1)
-
+list.reverseRec()
 list.print();
