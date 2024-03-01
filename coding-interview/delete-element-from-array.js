@@ -1,11 +1,9 @@
-function deleteElement(arr, index) {
-  for (let i = index; i < arr.length; i++) {
-    arr[i] = arr[i + 1];
-  }
-  arr.length--;
+const nestedArray = [1, [2, [3, 4], 5], 6, [7, 8]];
 
-  return arr;
+function sum (arr){
+  return arr.reduce((acc, curr)=>{
+    return acc+(Array.isArray(curr) ? sum(curr) : curr)
+  },0)
 }
 
-const arr = [1, 2, 3, 10, 20, 30];
-console.log(deleteElement(arr, 2));
+console.log(sum(nestedArray));
