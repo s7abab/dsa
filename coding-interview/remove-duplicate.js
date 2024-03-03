@@ -1,22 +1,15 @@
-const arr = [1, 1, 42, 10, 3, 4, 4, 1, 2, 2];
+const arr = [1, 2, 1, 1, 45, 134, 5];
+const count = {};
+
+for (let item of arr) {
+  count[item] = (count[item] || 0) + 1;
+}
+
 const newArr = [];
-function removeDuplicate(arr) {
-  const obj = {};
-
-  for (let item of arr) {
-    if (!obj[item]) {
-      obj[item] = 1;
-    } else {
-      obj[item] = obj[item] + 1;
-    }
-  }
-
-  for (let i in obj) {
-    if (obj[i] <= 1) {
-      newArr.push(i);
-    }
+for (let i in count) {
+  if (count[i] === 1) {
+    newArr.push(Number(i));
   }
 }
 
-removeDuplicate(arr);
 console.log(newArr);
